@@ -1,5 +1,7 @@
-import ws from 'ws'
+import { io } from 'socket.io-client'
 
-const client = new ws('ws://localhost:3000');
+console.log('Client running');
 
-client.on('open', () => client.send('Hello'));
+const socket = io('http://localhost:3000/');
+
+socket.emit('chat message', 'Hello');
