@@ -1,5 +1,4 @@
 import express from 'express';
-import ws from 'ws';
 import { Server } from 'socket.io';
 
 const port = process.env.port || 3000;
