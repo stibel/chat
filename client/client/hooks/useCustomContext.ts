@@ -1,8 +1,8 @@
 import { Context, useContext } from "react";
 
-const useCustomContext = (context: Context<any>) => {
+const useCustomContext = <T> (context: Context<any>) => {
 
-    const ctx = useContext(context);
+    const ctx = useContext<T>(context);
 
     if (!ctx)
         throw new Error('No context provided!');
