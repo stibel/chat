@@ -24,7 +24,5 @@ io.on('connection', socket => {
         callback({
             msg: 'received'
         })
-    })
-
-    
+    }) 
 });
