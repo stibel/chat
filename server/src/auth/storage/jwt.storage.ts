@@ -1,9 +1,9 @@
 import { differenceInDays } from 'date-fns'
-import { TOKEN_EXPIRATION_DAYS } from '../../../src/globals/auth.globals'
-import { JWTStorage, JWTValidation } from '../../types/jwt-storage.type'
+import { TOKEN_EXPIRATION_DAYS } from '../../globals/auth.globals'
+import { JWTMap, JWTStorage, JWTValidation } from '../../types/jwt-storage.type'
 
-export const jwtStorage = () => {
-    const storage: JWTStorage = new Map<string, Date>()
+export const jwtStorage = (): JWTStorage => {
+    const storage: JWTMap = new Map<string, Date>()
 
     const jwtExist = (jwt: string) => storage.has(jwt)
 
@@ -18,8 +18,8 @@ export const jwtStorage = () => {
 
     const getExpirationDate = (jwt: string) => storage.get(jwt)
 
-    const validateToken = async (jwt: string): Promise<JWTValidation>  => {        
-        if (!jwtExist(jwt))
+    const validateToken = async (jwt: string | undefined): Promise<JWTValidation>  => {        
+        if (!jwt || !jwtExist(jwt))
             return {
                 isValid: false,
                 expirationDate: null
